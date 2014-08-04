@@ -31,7 +31,7 @@ describe RailsSessionKeyRotator do
       rack_mock_session.cookie_jar[key] = old_verifier.generate(session_data)
     end
 
-    it 'is readable with the new secret after the signature has been replaced' do
+    it 're-writes the session cookie to be readable with the new secret by the app' do
       get '/'
       the_apps_session.must_equal(session_data)
     end
@@ -42,7 +42,7 @@ describe RailsSessionKeyRotator do
       rack_mock_session.cookie_jar[key] = new_verifier.generate(session_data)
     end
 
-    it 'is still readable by the app' do
+    it 'does nothing (is still readable by the app)' do
       get '/'
       the_apps_session.must_equal(session_data)
     end
@@ -53,7 +53,7 @@ describe RailsSessionKeyRotator do
       rack_mock_session.cookie_jar[key] = nil
     end
 
-    it 'is still readable by the app' do
+    it 'does nothing (is read as nil by the app)' do
       get '/'
       the_apps_session.must_be_nil
     end
