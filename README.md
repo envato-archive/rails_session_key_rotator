@@ -19,7 +19,7 @@ And then execute:
 In config/application.rb:
 
 ```ruby
-config.middleware.insert_after(ActionDispatch::Session::CookieStore, RailsSessionKeyRotator,
+config.middleware.insert_before(ActionDispatch::Session::CookieStore, RailsSessionKeyRotator,
                                :old_secret => Secrets.old_session_secret,
                                :new_secret => Secrets.session_secret,
                                :key => 'myapp_session')
