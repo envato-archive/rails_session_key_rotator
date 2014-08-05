@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["steve@hodgkiss.me"]
   spec.summary       = %q{Graceful session key rotation for the signed cookie store in Rails 3.}
   spec.description   = %q{}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/envato/rails_session_key_rotator"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
