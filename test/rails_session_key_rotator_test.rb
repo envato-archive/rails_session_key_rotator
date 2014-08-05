@@ -35,6 +35,16 @@ describe RailsSessionKeyRotator do
       get '/'
       the_apps_session.must_equal(session_data)
     end
+
+    it 'instruments upgrades with activesupport notifications' do
+      called = false
+      subscription = ActiveSupport::Notifications.subscribe('rails_session_key_rotator.upgraded') do |name, start, finish, request_id, req|
+        called = true
+      end
+      get '/'
+      called.must_equal true
+      ActiveSupport::Notifications.unsubscribe(subscription)
+    end
   end
 
   context 'with a session cookie signed with the new secret' do

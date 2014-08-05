@@ -13,6 +13,7 @@ class RailsSessionKeyRotator
     @request = Rack::Request.new(env)
     if session_cookie.present? && old_signature_matches?
       @request.cookies[@session_cookie_key] = new_verifier.generate(session_data)
+      ActiveSupport::Notifications.instrument('rails_session_key_rotator.upgraded', @request)
     end
     @app.call(env)
   end
