@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name          = "rails_session_key_rotator"
-  spec.version       = "0.0.1"
+  spec.version       = "0.0.2"
   spec.authors       = ["Steve Hodgkiss"]
   spec.email         = ["steve@hodgkiss.me"]
   spec.summary       = %q{Graceful session key rotation for the signed cookie store in Rails 3.}
